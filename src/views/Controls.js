@@ -1,14 +1,21 @@
 import { extend, Button, ControlAnchor } from 'OpenSeadragon';
 
-import drawGroupHover from '../../img/draw_grouphover.png';
-import drawHover from '../../img/draw_hover.png';
 import drawPressed from '../../img/draw_pressed.png';
-import drawRest from '../../img/draw_rest.png';
+import drawUnpressed from '../../img/draw_unpressed.png';
+import undo from '../../img/undo.png'
 
-import moveGroupHover from '../../img/move_grouphover.png';
-import moveHover from '../../img/move_hover.png';
 import movePressed from '../../img/move_pressed.png';
-import moveRest from '../../img/move_rest.png';
+import moveUnpressed from '../../img/move_unpressed.png';
+
+import trashPressed from '../../img/trash_pressed.png'
+import trashUnpressed from '../../img/trash_unpressed.png'
+
+import pointPressed from '../../img/point_pressed.png'
+import pointUnpressed from '../../img/point_unpressed.png'
+
+import circlePressed from '../../img/circle_pressed.png'
+import circleUnpressed from '../../img/circle_unpressed.png'
+
 
 export class Control {
   constructor(options) {
@@ -54,10 +61,35 @@ export class DrawControl extends Control {
   constructor(options) {
     super({
       Tooltip: 'Draw',
-      srcRest: drawRest,
-      srcGroup: drawGroupHover,
-      srcHover: drawHover,
+      srcRest: drawUnpressed,
+      srcGroup: drawUnpressed,
+      srcHover: drawPressed,
       srcDown: drawPressed,
+      ...options,
+    });
+  }
+}
+
+export class UndoControl extends Control {
+  constructor(options) {
+    super({
+      Tooltip: 'Undo',
+      srcRest: undo,
+      srcGroup: undo,
+      srcHover: undo,
+      srcDown: undo,
+      ...options,
+    });
+  }
+}
+export class TrashControl extends Control {
+  constructor(options) {
+    super({
+      Tooltip: 'Delete',
+      srcRest: trashUnpressed,
+      srcGroup: trashUnpressed,
+      srcHover: trashPressed,
+      srcDown: trashPressed,
       ...options,
     });
   }
@@ -67,10 +99,34 @@ export class MoveControl extends Control {
   constructor(options) {
     super({
       Tooltip: 'Move',
-      srcRest: moveRest,
-      srcGroup: moveGroupHover,
-      srcHover: moveHover,
+      srcRest: moveUnpressed,
+      srcGroup: moveUnpressed,
+      srcHover: movePressed,
       srcDown: movePressed,
+      ...options,
+    });
+  }
+}
+export class PointControl extends Control {
+  constructor(options) {
+    super({
+      Tooltip: 'Point',
+      srcRest: pointUnpressed,
+      srcGroup: pointUnpressed,
+      srcHover: pointPressed,
+      srcDown: pointPressed,
+      ...options,
+    });
+  }
+}
+export class CircleControl extends Control {
+  constructor(options) {
+    super({
+      Tooltip: 'Circle',
+      srcRest: circleUnpressed,
+      srcGroup: circleUnpressed,
+      srcHover: circlePressed,
+      srcDown: circlePressed,
       ...options,
     });
   }

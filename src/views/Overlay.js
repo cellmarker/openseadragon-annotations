@@ -1,5 +1,6 @@
 import { h, Component } from 'preact';
 
+
 class Overlay extends Component {
   constructor(...args) {
     super(...args);
@@ -45,6 +46,8 @@ class Overlay extends Component {
   };
 
   onMouseUp = (e) => {
+    console.log(this.state);
+
     if (this.state.mode !== 'MOVE') {
       e.stopPropagation();
       this.props.dispatch({ type: 'RELEASE' });
@@ -64,11 +67,14 @@ class Overlay extends Component {
     const offsetY = e.clientY - rect.top;
     const x = (100 * offsetX) / rect.width;
     const y = (100 * offsetY) / rect.height;
-    return { x: Math.round(x * 100) / 100, y: Math.round(y * 100) / 100 };
+    // console.log(x);
+    // console.log(y);
+    return { x: Math.round(x * 1000000) / 1000000, y: Math.round(y * 1000000) / 1000000 };
   }
 
   render() {
     const { onMouseDown, onMouseLeave, onMouseMove, onMouseUp } = this;
+    // console.log(this.state);
     return h(
       'svg',
       {
@@ -86,11 +92,11 @@ class Overlay extends Component {
         onMouseLeave,
         onMouseMove,
         onMouseUp,
-        onPointerDown: onMouseDown,
-        onPointerUp: onMouseUp,
+        onPointerDown: onMouseDown
       },
       this.state.annotations.map((el) => this.renderElement(el, this.state)),
     );
+
   }
 }
 
